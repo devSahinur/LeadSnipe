@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+  "name": "LeadSnipe - Email Extractor",
+  "version": "1.0",
+  "description": "Extract business & personal emails from any webpage. Perfect for cold email marketing by Sahinur",
+  "permissions": ["activeTab", "clipboardWrite"],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "email-extractor@sahinur.dev"
+    }
+  }
+}

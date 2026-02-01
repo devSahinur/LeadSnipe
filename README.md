@@ -147,7 +147,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Sahinur Islam**
 
 [![GitHub](https://img.shields.io/badge/GitHub-devSahinur-181717?style=flat-square&logo=github)](https://github.com/devSahinur)
-[![Portfolio](https://img.shields.io/badge/Portfolio-sahinur.vercel.app-667eea?style=flat-square&logo=vercel)](https://sahinur.vercel.app)
+[![Portfolio](https://img.shields.io/badge/Portfolio-sahinur.dev-667eea?style=flat-square&logo=vercel)](https://www.sahinur.dev)
 
 </div>
 

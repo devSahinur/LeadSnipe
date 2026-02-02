@@ -1,9 +1,10 @@
 # Claude
-.claude
 .claude/
 
 # Build output
 dist/
+chrome-build/
+firefox-build/
 
 # OS files
 .DS_Store

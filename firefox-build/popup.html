@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>LeadSnipe</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 400px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 13px;
+      background: #1a1a2e;
+      color: #eee;
+    }
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 15px;
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    .header p {
+      font-size: 11px;
+      opacity: 0.9;
+    }
+    .controls {
+      padding: 12px;
+      background: #16213e;
+      border-bottom: 1px solid #0f3460;
+    }
+    #extractBtn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    #extractBtn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    .filters {
+      padding: 10px 12px;
+      background: #16213e;
+      border-bottom: 1px solid #0f3460;
+    }
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .filter-row:last-child {
+      margin-bottom: 0;
+    }
+    .filter-btn {
+      flex: 1;
+      padding: 8px;
+      background: #0f3460;
+      color: #eee;
+      border: 1px solid #1a4a7a;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 11px;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover {
+      background: #1a4a7a;
+    }
+    .filter-btn.active {
+      background: #667eea;
+      border-color: #667eea;
+    }
+    .stats {
+      display: flex;
+      padding: 10px 12px;
+      background: #0f3460;
+      gap: 10px;
+    }
+    .stat-box {
+      flex: 1;
+      text-align: center;
+      padding: 8px;
+      background: #16213e;
+      border-radius: 6px;
+    }
+    .stat-number {
+      font-size: 20px;
+      font-weight: bold;
+      color: #667eea;
+    }
+    .stat-label {
+      font-size: 10px;
+      color: #888;
+      text-transform: uppercase;
+    }
+    .actions {
+      display: flex;
+      gap: 8px;
+      padding: 10px 12px;
+      background: #16213e;
+    }
+    .action-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .copy-btn {
+      background: #00b894;
+      color: white;
+    }
+    .copy-btn:hover {
+      background: #00a383;
+    }
+    .export-btn {
+      background: #0984e3;
+      color: white;
+    }
+    .export-btn:hover {
+      background: #0773c7;
+    }
+    .toast {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #00b894;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 500;
+      display: none;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .email-list {
+      max-height: 280px;
+      overflow-y: auto;
+      padding: 10px 12px;
+      background: #1a1a2e;
+    }
+    .email-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .email-list::-webkit-scrollbar-track {
+      background: #16213e;
+    }
+    .email-list::-webkit-scrollbar-thumb {
+      background: #667eea;
+      border-radius: 3px;
+    }
+    .email-item {
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      background: #16213e;
+      margin-bottom: 6px;
+      border-radius: 6px;
+      border-left: 3px solid #667eea;
+    }
+    .email-item.business {
+      border-left-color: #00b894;
+    }
+    .email-item.personal {
+      border-left-color: #fdcb6e;
+    }
+    .email-text {
+      flex: 1;
+      word-break: break-all;
+      font-size: 12px;
+    }
+    .email-copy {
+      background: none;
+      border: none;
+      color: #667eea;
+      cursor: pointer;
+      padding: 4px;
+      font-size: 14px;
+    }
+    .email-copy:hover {
+      color: #764ba2;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+    }
+    .empty-state-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+    .footer {
+      padding: 10px;
+      text-align: center;
+      background: #0f3460;
+      font-size: 10px;
+      color: #666;
+    }
+    .footer a {
+      color: #667eea;
+      text-decoration: none;
+    }
+    .domain-stats {
+      padding: 10px 12px;
+      background: #16213e;
+      display: none;
+    }
+    .domain-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      font-size: 11px;
+      border-bottom: 1px solid #0f3460;
+    }
+    .domain-item:last-child {
+      border-bottom: none;
+    }
+    .domain-name {
+      color: #667eea;
+    }
+    .domain-count {
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="toast" id="toast">Copied to clipboard!</div>
+
+  <div class="header">
+    <h1>LeadSnipe</h1>
+    <p>Cold Email Extraction Tool by Sahinur</p>
+  </div>
+
+  <div class="controls">
+    <button id="extractBtn">Extract Emails from Page</button>
+  </div>
+
+  <div class="filters">
+    <div class="filter-row">
+      <button class="filter-btn active" data-filter="all">All Emails</button>
+      <button class="filter-btn" data-filter="business">Business Only</button>
+      <button class="filter-btn" data-filter="personal">Personal Only</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-box">
+      <div class="stat-number" id="totalCount">0</div>
+      <div class="stat-label">Total</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number" id="businessCount">0</div>
+      <div class="stat-label">Business</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number" id="personalCount">0</div>
+      <div class="stat-label">Personal</div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="action-btn copy-btn" id="copyBtn" disabled>Copy All</button>
+    <button class="action-btn export-btn" id="exportCsv" disabled>Export CSV</button>
+    <button class="action-btn export-btn" id="exportTxt" disabled>Export TXT</button>
+  </div>
+
+  <div class="domain-stats" id="domainStats"></div>
+
+  <div class="email-list" id="emailList">
+    <div class="empty-state">
+      <div class="empty-state-icon">📧</div>
+      <div>Click "Extract Emails" to scan this page</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    LeadSnipe v1.0 | Created by <a href="https://www.sahinur.dev">Sahinur</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

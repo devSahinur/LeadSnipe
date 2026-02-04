@@ -6,6 +6,7 @@
 
 **Extract business emails from any webpage in one click.**
 
+[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Install-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/leadsnipe-email-extractor/ndfbblpccbhadnbnfhegjhpefocmilag)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-leadsnipe.netlify.app-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://leadsnipe.netlify.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-devSahinur-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/devSahinur/LeadSnipe)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
@@ -32,6 +33,14 @@ LeadSnipe is a powerful Chrome extension designed for **cold email marketers**, 
 | **100% Privacy** | All processing happens locally - zero data collection |
 
 ## Installation
+
+### From Chrome Web Store (Recommended)
+
+[![Install from Chrome Web Store](https://img.shields.io/badge/Install-Chrome%20Web%20Store-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/leadsnipe-email-extractor/ndfbblpccbhadnbnfhegjhpefocmilag)
+
+1. Visit the [Chrome Web Store](https://chromewebstore.google.com/detail/leadsnipe-email-extractor/ndfbblpccbhadnbnfhegjhpefocmilag)
+2. Click **"Add to Chrome"**
+3. Done!
 
 ### From Source (Developer Mode)
 
